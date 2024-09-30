@@ -4,7 +4,7 @@ echo ================================================
 echo         Parche para LEGO Star Wars TFA
 echo ================================================
 
-REM Obtener la unidad del sistema
+REM Obtener la unidad del sistema y el nombre de usuario
 set drive=%SystemDrive%
 set username=%USERNAME%
 
@@ -27,19 +27,24 @@ goto menu
 :parchear
 cls
 echo Navegando a la carpeta del juego...
-cd /d "%drive%\Users\%username%\AppData\Roaming\Warner Bros. Interactive Entertainment\LEGO STAR WARS The Force Awakens\GUI3"
+set gamepath="%drive%\Users\%username%\AppData\Roaming\Warner Bros. Interactive Entertainment\LEGO STAR WARS The Force Awakens\GUI3"
 
-REM Borrar todo el contenido de la carpeta
-echo Borrando el contenido de la carpeta GUI3...
-del /f /q *
-rmdir /s /q "%drive%\Users\%username%\AppData\Roaming\Warner Bros. Interactive Entertainment\LEGO STAR WARS The Force Awakens\GUI3"
+if exist %gamepath% (
+    echo Borrando el contenido de la carpeta GUI3...
+    del /f /q "%gamepath%\*" >nul
+    rmdir /s /q %gamepath% >nul
 
-REM Remover los permisos de la carpeta
-echo Removiendo permisos de la carpeta...
-icacls "%drive%\Users\%username%\AppData\Roaming\Warner Bros. Interactive Entertainment\LEGO STAR WARS The Force Awakens\GUI3" /deny %username%:F
+    REM Remover los permisos de la carpeta
+    echo Removiendo permisos de la carpeta...
+    icacls %gamepath% /deny %username%:F >nul
 
-echo ================================================
-echo Parche aplicado correctamente.
+    echo ================================================
+    echo Parche aplicado correctamente.
+) else (
+    echo ================================================
+    echo No se encontró la carpeta del juego.
+)
+
 echo Pulsa cualquier tecla para volver al menú...
 pause >nul
 goto menu
@@ -47,10 +52,14 @@ goto menu
 :revertir
 cls
 echo Revertiendo cambios...
-REM Restaurar permisos
-icacls "%drive%\Users\%username%\AppData\Roaming\Warner Bros. Interactive Entertainment\LEGO STAR WARS The Force Awakens\GUI3" /reset
+if exist %gamepath% (
+    REM Restaurar permisos
+    icacls %gamepath% /reset >nul
+    echo Permisos restaurados correctamente.
+) else (
+    echo No se encontró la carpeta del juego.
+)
 
-echo Permisos restaurados correctamente.
 echo ================================================
 echo Pulsa cualquier tecla para volver al menú...
 pause >nul
