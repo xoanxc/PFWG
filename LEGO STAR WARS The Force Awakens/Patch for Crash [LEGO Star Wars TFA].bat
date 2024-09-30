@@ -30,14 +30,14 @@ echo Navegando a la carpeta del juego...
 set gamepath="%drive%\Users\%username%\AppData\Roaming\Warner Bros. Interactive Entertainment\LEGO STAR WARS The Force Awakens\GUI3"
 
 if exist %gamepath% (
-    echo Borrando el contenido de la carpeta GUI3...
-    del /f /q "%gamepath%\*" >nul
-    rmdir /s /q %gamepath% >nul
-
     REM Remover todos los permisos (usuario actual y administrador)
-    echo Removiendo todos los permisos de la carpeta...
+    echo Removiendo permisos de la carpeta...
     icacls %gamepath% /deny %username%:F >nul
     icacls %gamepath% /deny Administrators:F >nul
+
+    REM Borrar todo el contenido de la carpeta
+    echo Borrando el contenido de la carpeta GUI3...
+    del /f /q "%gamepath%\*" >nul
 
     echo ================================================
     echo Parche aplicado correctamente.
