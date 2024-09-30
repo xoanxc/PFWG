@@ -35,12 +35,8 @@ if exist %gamepath% (
     icacls %gamepath% /deny %username%:F >nul
     icacls %gamepath% /deny Administrators:F >nul
 
-    REM Borrar todo el contenido de la carpeta
-    echo Borrando el contenido de la carpeta GUI3...
-    del /f /q "%gamepath%\*" >nul
-
     echo ================================================
-    echo Parche aplicado correctamente.
+    echo Permisos removidos correctamente.
 ) else (
     echo ================================================
     echo No se encontró la carpeta del juego.
