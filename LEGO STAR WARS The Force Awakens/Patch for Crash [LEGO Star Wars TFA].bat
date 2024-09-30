@@ -34,9 +34,10 @@ if exist %gamepath% (
     del /f /q "%gamepath%\*" >nul
     rmdir /s /q %gamepath% >nul
 
-    REM Remover los permisos de la carpeta
-    echo Removiendo permisos de la carpeta...
+    REM Remover todos los permisos (usuario actual y administrador)
+    echo Removiendo todos los permisos de la carpeta...
     icacls %gamepath% /deny %username%:F >nul
+    icacls %gamepath% /deny Administrators:F >nul
 
     echo ================================================
     echo Parche aplicado correctamente.
