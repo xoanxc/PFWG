@@ -42,7 +42,7 @@ if exist %gamepath% (
     echo No se encontró la carpeta del juego.
 )
 
-echo Pulsa cualquier tecla para volver al menú...
+echo Pulsa cualquier tecla para volver al menu...
 pause >nul
 goto menu
 
@@ -54,7 +54,7 @@ if exist %gamepath% (
     icacls %gamepath% /reset >nul
     echo Permisos restaurados correctamente.
 ) else (
-    echo No se encontró la carpeta del juego.
+    echo No se encontro la carpeta del juego.
 )
 
 echo ================================================
