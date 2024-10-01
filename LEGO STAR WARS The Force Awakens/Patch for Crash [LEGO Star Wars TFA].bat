@@ -27,13 +27,13 @@ goto menu
 :parchear
 cls
 echo Navegando a la carpeta del juego...
-set gamepath="%drive%\Users\%username%\AppData\Roaming\Warner Bros. Interactive Entertainment\LEGO STAR WARS The Force Awakens\GUI3"
+set gamepath=%drive%\Users\%username%\AppData\Roaming\Warner Bros. Interactive Entertainment\LEGO STAR WARS The Force Awakens\GUI3
 
-if exist %gamepath% (
+if exist "%gamepath%" (
     REM Remover todos los permisos (usuario actual y administrador)
     echo Removiendo permisos de la carpeta...
-    icacls %gamepath% /deny %username%:F >nul
-    icacls %gamepath% /deny Administrators:F >nul
+    icacls "%gamepath%" /deny %username%:F >nul
+    icacls "%gamepath%" /deny Administrators:F >nul
 
     echo ================================================
     echo Permisos removidos correctamente.
@@ -42,19 +42,19 @@ if exist %gamepath% (
     echo No se encontró la carpeta del juego.
 )
 
-echo Pulsa cualquier tecla para volver al menu...
+echo Pulsa cualquier tecla para volver al menú...
 pause >nul
 goto menu
 
 :revertir
 cls
 echo Revertiendo cambios...
-if exist %gamepath% (
+if exist "%gamepath%" (
     REM Restaurar permisos
-    icacls %gamepath% /reset >nul
+    icacls "%gamepath%" /reset >nul
     echo Permisos restaurados correctamente.
 ) else (
-    echo No se encontro la carpeta del juego.
+    echo No se encontró la carpeta del juego.
 )
 
 echo ================================================
