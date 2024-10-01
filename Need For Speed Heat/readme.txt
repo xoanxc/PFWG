@@ -1,0 +1,1 @@
+Este fix debe ser ejecutado en la ruta de instalación del juego, parchea el uso excesivo de CPU en NFS Heat
